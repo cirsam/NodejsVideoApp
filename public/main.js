@@ -24,17 +24,19 @@
         var serverUrl;
         var scheme = "ws";
         var myHostname = window.location.hostname;
+        var port = window.location.port;
+
         console.log("Hostname: " + myHostname);
 
         if (document.location.protocol === "https:") {
-            serverUrl = scheme + "s://" + myHostname;
+            serverUrl = scheme + "s://" + myHostname+":"+port;
         }else{
-            serverUrl = scheme + "://" + myHostname;       
+            serverUrl = scheme + "://" + myHostname+":"+port;       
         }
 
         console.log("serverurl"+ serverUrl);
 
-        signaling = new WebSocket(serverUrl+":3000");
+        signaling = new WebSocket(serverUrl);
         peerConnection = createPeerConnection();
   
         addMessageHandler();
